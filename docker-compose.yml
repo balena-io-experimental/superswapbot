@@ -1,0 +1,11 @@
+version: '2'
+services:
+  superswap:
+    build: ./superswap
+    volumes:
+        - config:/usr/src/app/superswap/config
+        - versions:/usr/src/app/superswap/versions
+
+volumes:
+    config:
+    versions:

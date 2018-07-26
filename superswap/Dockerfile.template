@@ -1,0 +1,15 @@
+FROM resin/%%RESIN_MACHINE_NAME%%-node:9
+
+WORKDIR /usr/src/app
+ENV INITSYSTEM=off
+
+ENV VERSION=56840b2c1f0877f8ca6665203c34d6a1d3dd26cf
+RUN    git clone https://github.com/resin-io-playground/superswap.git \
+    && cd superswap \
+    && git checkout -b running "${VERSION}" \
+    && npm install --only=production --unsafe-perms
+
+WORKDIR /usr/src/app/superswap
+COPY start.sh ./
+
+CMD ["bash", "start.sh"]
